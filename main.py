@@ -71,4 +71,13 @@ sum_total_price = pd.read_sql("""
 
 # STEP 9
 # Replace None with your code
-df_day_month_year = None
+df_day_month_year = pd.read_sql("""
+  SELECT
+    orderDate,
+    STRFTIME('%d', orderDate) AS day,
+    STRFTIME('%m', orderDate) AS month,
+    STRFTIME('%y', orderDate) AS year,
+  FROM orders
+""", conn)
+
+conn.close()
